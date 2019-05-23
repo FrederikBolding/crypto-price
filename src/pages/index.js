@@ -13,6 +13,11 @@ const CoinGeckoClient = new CoinGecko()
 class IndexPage extends Component {
   componentDidMount() {
     this.fetchPrice()
+    this.interval = setInterval(() => this.fetchPrice(), 30 * 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   state = {
