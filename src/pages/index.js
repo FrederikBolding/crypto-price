@@ -1,21 +1,61 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Component } from "react"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+import MadeWithLove from "../components/MadeWithLove"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+import "../components/index.css"
+
+import CoinGecko from "coingecko-api"
+
+const CoinGeckoClient = new CoinGecko()
+
+class IndexPage extends Component {
+  componentDidMount() {
+    this.fetchPrice()
+  }
+
+  state = {
+    data: undefined,
+  }
+
+  render() {
+    return (
+      <Layout>
+        <SEO title="Ethereum Price" />
+        <div className="App">
+          <div className="App-content">
+            {!this.state.data ? (
+              <h1>Loading</h1>
+            ) : (
+              <>
+                <h1>${this.state.data.data.ethereum.usd}</h1>
+                <h2 style={{ color : (this.state.data.data.ethereum.usd_24h_change > 0 ? "green" : "red")}}>
+                  {this.state.data.data.ethereum.usd_24h_change > 0 ? "+" : ""}
+                  {this.state.data.data.ethereum.usd_24h_change.toFixed(3)}%
+                </h2>
+              </>
+            )}
+            <MadeWithLove
+              by="Frederik Bolding"
+              link="https://frederikbolding.com"
+            />
+          </div>
+        </div>
+      </Layout>
+    )
+  }
+
+  fetchPrice = async () => {
+    let data = await CoinGeckoClient.simple.price({
+      ids: ["ethereum"],
+      vs_currencies: ["eur", "usd"],
+      include_24hr_change: true,
+    })
+    this.setState({ data: data })
+  }
+}
 
 export default IndexPage
