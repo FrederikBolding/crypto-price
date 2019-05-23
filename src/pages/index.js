@@ -1,8 +1,6 @@
 import React from "react"
 import { Component } from "react"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import MadeWithLove from "../components/MadeWithLove"
 
@@ -23,7 +21,7 @@ class IndexPage extends Component {
 
   render() {
     return (
-      <Layout>
+      <main>
         <SEO title="Ethereum Price" />
         <div className="App">
           <div className="App-content">
@@ -32,7 +30,7 @@ class IndexPage extends Component {
             ) : (
               <>
                 <h1>${this.state.data.data.ethereum.usd}</h1>
-                <h2 style={{ color : (this.state.data.data.ethereum.usd_24h_change > 0 ? "green" : "red")}}>
+                <h2 style={{ color : (this.state.data.data.ethereum.usd_24h_change > 0 ? "#44be24" : "#ef4f1b")}}>
                   {this.state.data.data.ethereum.usd_24h_change > 0 ? "+" : ""}
                   {this.state.data.data.ethereum.usd_24h_change.toFixed(3)}%
                 </h2>
@@ -44,7 +42,7 @@ class IndexPage extends Component {
             />
           </div>
         </div>
-      </Layout>
+      </main>
     )
   }
 
