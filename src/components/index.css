@@ -8,19 +8,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
   
-  h1 {
-    margin-bottom: 0;
-    margin-block-start: 1.25em;
-  }
-
-  h2 {
-    margin-block-start: 0.45em;
-  }
-
 .App {
     text-align: center;
-    color: white;
-    background-color: black;
+    color: hsla(270,14.531692384000001%,0%,0.84);
+    background-color: rgb(252, 250, 255);
   }
   
   .App-content {
@@ -29,18 +20,45 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 4vmin);
+    font-size: calc(10px + 6vmin);
+  }
+
+  .header {
+    margin-bottom: 0;
+  }
+
+  .loading {
+    margin-top: 0;
+  }
+
+  .price {
+    margin-bottom: 0;
+    margin-block-start: 0.45em;
+  }
+
+  h2 {
+    margin-block-start: 0.45em;
+    margin-block-end: 0.45em;
   }
   
   .made-with-love {
     position: absolute;
     bottom: 0;
+    right: 0;
+    text-align: right;
+    font-size: 16px;
+  }
+
+  .last-updated {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     text-align: right;
     font-size: 16px;
   }
   
   a {
-    color: white;
+    color: hsla(270,14.531692384000001%,0%,0.84);
     text-decoration: none;
   }
   
