@@ -23,17 +23,13 @@ body {
     font-size: calc(10px + 6vmin);
   }
 
-  .header {
-    margin-bottom: 0;
-  }
-
   .loading {
     margin-top: 0;
   }
 
   .price {
+    margin-top: 0;
     margin-bottom: 0;
-    margin-block-start: 0.45em;
   }
 
   h2 {
