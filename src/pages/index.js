@@ -22,20 +22,21 @@ class IndexPage extends Component {
   }
 
   state = {
+    crypto: "Crypto",
     data: undefined,
   }
 
   render() {
     return (
       <main>
-        <SEO title="Ethereum Price" />
+        <SEO title={this.state.crypto + " Price"} />
         <div className="App">
           <div className="App-content">
-          <h2 className="header">Ethereum</h2>
             {!this.state.data ? (
-              <h1 className="loading">Loading</h1>
+              <h1 className="loading">{!this.state.error ? ("Loading") : ("Error")}</h1>
             ) : (
               <>
+                <h2 className="header">{this.state.crypto}</h2>
                 <h1 className="price">${this.state.data.usd.toFixed(2)}</h1>
                 <h2 style={{ color : (this.state.data.usd_24h_change > 0 ? "#44be24" : "#ef4f1b")}}>
                   {this.state.data.usd_24h_change > 0 ? "+" : ""}
@@ -58,13 +59,15 @@ class IndexPage extends Component {
   }
 
   fetchPrice = async () => {
+    let crypto = this.props["*"] ? this.props["*"] : "ethereum";
     let data = await CoinGeckoClient.simple.price({
-      ids: ["ethereum"],
+      ids: [crypto],
       vs_currencies: ["eur", "usd"],
       include_24hr_change: true,
       include_last_updated_at: true,
     })
-    this.setState({ data: data.data.ethereum })
+    let error = !data.data[crypto];
+    this.setState({ crypto: error ? this.state.crypto : crypto.charAt(0).toUpperCase() + crypto.slice(1), data: data.data[crypto], error: error })
   }
 }
 
