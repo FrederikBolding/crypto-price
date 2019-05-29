@@ -4,6 +4,7 @@ import { Component } from "react"
 import SEO from "../components/seo"
 import MadeWithLove from "../components/MadeWithLove"
 import TimeAgo from 'react-timeago'
+import GithubCorner from 'react-github-corner';
 
 import "../components/index.css"
 
@@ -52,6 +53,7 @@ class IndexPage extends Component {
               by="Frederik Bolding"
               link="https://frederikbolding.com"
             />
+            <GithubCorner href="https://github.com/FrederikBolding/crypto-price" />
           </div>
         </div>
       </main>
